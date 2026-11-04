@@ -28,5 +28,10 @@ class TrainerRegistrationForm(forms.Form):
             )
 
         return cleaned_data
+class TrainerLoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(
+        widget=forms.PasswordInput
+    )
 
 
