@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Logout</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/logout_confirm.css' %}">
+</head>
+<body>
+
+    <div class="confirm-container">
+        <h2>Confirm Logout</h2>
+
+        <p>Are you sure you want to logout?</p>
+
+        <div class="actions">
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">
+                    Yes, Logout
+                </button>
+            </form>
+
+            <a href="{% url 'home' %}" class="cancel-btn">
+                Cancel
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

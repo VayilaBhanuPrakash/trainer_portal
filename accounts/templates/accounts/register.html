@@ -1,20 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainer Registration</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
 </head>
 <body>
-    <h2>Trainer Registration</h2>
+    <div class="auth-container">
 
-    <form method="POST">
-        {% csrf_token %}
+        <h2>Trainer Registration</h2>
 
-        {{ form.as_p }}
+        <form method="POST">
+            {% csrf_token %}
 
-        <button type="submit">Register</button>
-    </form>
+            {{ form.as_p }}
+
+            <button type="submit" class="auth-btn">
+                Register
+            </button>
+        </form>
+
+        <p class="auth-link">
+            Already have an account?
+            <a href="{% url 'login' %}">Login here</a>
+        </p>
+
+    </div>
     
 </body>
 </html>
