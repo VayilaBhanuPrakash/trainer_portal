@@ -1,17 +1,88 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainer Home</title>
+    <title>Trainer Dashboard</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/home.css' %}">
 </head>
 <body>
-    <h2>Welcome to Trainer Portal</h2>
-    <p>Hello, {{ user.first_name }}!</p>
-    <p>You have successfully logged in.</p>
-    <form method="POST" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Trainer Portal</h2>
+
+        <nav>
+            <a href="{% url 'home' %}" class="active">Dashboard</a>
+            <a href="{% url 'student_list' %}">View Students</a>
+            <a href="{% url 'student_create' %}">Add Student</a>
+            <a href="#">My Profile</a>
+        </nav>
+
+        <a href="{% url 'logout_confirm' %}" class="sidebar-logout">
+            Logout
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Topbar -->
+        <div class="topbar">
+            <div>
+                <h2>Dashboard Overview</h2>
+                <p>Welcome to your management workspace.</p>
+            </div>
+
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    {{ user.first_name|first|upper }}
+                </div>
+                <span>{{ user.first_name }}</span>
+            </div>
+        </div>
+
+        <!-- Welcome Section -->
+        <div class="welcome">
+            <h2>Hello, {{ user.first_name }}!</h2>
+            <p>Here's what's happening in your Trainer Portal today.</p>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Students</h3>
+                <h1>{{ total_students }}</h1>
+                <a href="{% url 'student_list' %}">View Students →</a>
+            </div>
+
+            <div class="card">
+                <h3>Student Management</h3>
+                <p>Manage your student records.</p>
+                <a href="{% url 'student_list' %}">Open Students →</a>
+            </div>
+
+            <div class="card">
+                <h3>Add New Student</h3>
+                <p>Register a new student.</p>
+                <a href="{% url 'student_create' %}">Add Student →</a>
+            </div>
+
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h2>Quick Actions</h2>
+
+            <div class="action-buttons">
+                <a href="{% url 'student_create' %}">+ Add Student</a>
+                <a href="{% url 'student_list' %}">View All Students</a>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>

@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f1f5f9;
+}
+
+.confirm-container {
+    width: 400px;
+    max-width: calc(100% - 32px);
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.confirm-container h2 {
+    color: #1e293b;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.confirm-container p {
+    color: #64748b;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logout-btn,
+.cancel-btn {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.logout-btn {
+    background: #dc2626;
+    color: white;
+}
+
+.logout-btn:hover {
+    background: #b91c1c;
+}
+
+.cancel-btn {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.cancel-btn:hover {
+    background: #cbd5e1;
+}

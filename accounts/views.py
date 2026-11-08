@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
+from students.models import Student
+
 def register_view(request):
 
     if request.method == 'POST':
@@ -31,6 +33,7 @@ def register_view(request):
 
     return render(request,'accounts/register.html', context)
 
+
 def login_view(request):
     if request.method == 'POST':
         form = TrainerLoginForm(request.POST)
@@ -54,9 +57,18 @@ def login_view(request):
 
 @login_required(login_url='login')
 def home_view(request):
-    return render(request, 'accounts/home.html')
+
+    total_students = Student.objects.filter(trainer=request.user).count()
+    context = {
+        'total_students': total_students
+    }
+    return render(request, 'accounts/home.html',context)
 
 @require_POST
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+@login_required(login_url='login')
+def logout_confirm_view(request):
+    return render(request, 'accounts/logout_confirm.html')
