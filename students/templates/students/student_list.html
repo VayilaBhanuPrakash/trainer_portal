@@ -21,7 +21,28 @@
                 + Add New Student
             </a>
         </div>
+        <form method="GET" class="search-form">
+            <input
+                type="text"
+                name="q"
+                placeholder="Search by name, email or student ID..."
+                value="{{ query }}"
+            >
+            <select name="course">
+                <option value="">All Courses</option>
 
+                {% for value, label in course_choices %}
+                    <option value="{{ value }}"
+                        {% if selected_course == value %}selected{% endif %}>
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Search</button>
+
+            <a href="{% url 'student_list' %}">Clear</a>
+        </form>
         <table>
             <thead>
                 <tr>
@@ -58,6 +79,33 @@
                 {% endfor %}
             </tbody>
         </table>
+        <div class="pagination">
+
+            {% if page_obj.has_previous %}
+                <a href="?q={{ query }}&course={{ selected_course }}&page=1">
+                    First
+                </a>
+
+                <a href="?q={{ query }}&course={{ selected_course }}&page={{ page_obj.previous_page_number }}">
+                    Previous
+                </a>
+            {% endif %}
+
+            <span>
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?q={{ query }}&course={{ selected_course }}&page={{ page_obj.next_page_number }}">
+                    Next
+                </a>
+
+                <a href="?q={{ query }}&course={{ selected_course }}&page={{ page_obj.paginator.num_pages }}">
+                    Last
+                </a>
+            {% endif %}
+
+        </div>
 
     </div>
 
